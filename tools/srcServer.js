@@ -21,10 +21,13 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));   // use webpack-hot-middleware and use compiler config info that we declared above
 
+// Tells Express which files we want to servce.
 app.get('*', function(req, res) {
-    res.sendFile(path.join( __dirname, '../src/index.html'));
+    res.sendFile(path.join( __dirname, '../src/index.html'));   // only serve index.html, because we create a single page app for all the request
+    // The wildcard (*) means for all request return src/index.html
 });
 
+// Start Express on the port (3000) and open the browser which that port below
 app.listen(port, function(err) {
     if (err) {
         console.log(err);
